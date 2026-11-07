@@ -1,7 +1,9 @@
-# sartorius competence
+# Sartorius Competence
 
-interface for the Sartorius CP, GC and GP Model balances.
+Interface for the Sartorius CP, GC and GP precision balances.
 
-## note
+## Notes
 
-for continuous updates, set `611`.
+Make sure pin 6 on the DB25 connector (usually DTR with a null model cable) is left unconnected, or you "may damage or even completely ruin your balance/scale and/or peripheral device" according to the manual.
+
+For preview updates, set `611` (press TARE during startup to enter menu).

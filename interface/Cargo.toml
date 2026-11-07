@@ -1,0 +1,13 @@
+[package]
+name = "interface"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+sartorius-competence = { path = ".." }
+
+eframe = "0.37.0"
+egui = "0.37.0"
+anyhow = "1.0.104"
+crossbeam-channel = "0.5.17"
+clone-macro = "1.0.0"

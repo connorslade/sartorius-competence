@@ -14,7 +14,7 @@ impl SmallString {
         let trim = data.trim_ascii();
 
         let mut data = [0; 16];
-        data[..trim.len()].copy_from_slice(&trim);
+        data[..trim.len()].copy_from_slice(trim);
 
         Self {
             data,
@@ -70,9 +70,9 @@ impl RawScale {
     }
 
     pub fn command_send_only(&mut self, command: &[u8]) -> Result<()> {
-        self.inner.write(&[0x1b])?;
-        self.inner.write(command)?;
-        self.inner.write(b"\r\n")?;
+        self.inner.write_all(&[0x1b])?;
+        self.inner.write_all(command)?;
+        self.inner.write_all(b"\r\n")?;
         self.inner.flush()?;
 
         Ok(())
@@ -155,13 +155,13 @@ impl Scale {
     }
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub enum WeighResult {
     Preview { value: f32 },
     Weight { value: f32, unit: Unit },
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub enum Unit {
     Gram,
 }
@@ -172,5 +172,11 @@ impl Unit {
             "g" => Self::Gram,
             _ => return None,
         })
+    }
+
+    pub fn symbol(&self) -> &str {
+        match self {
+            Unit::Gram => "g",
+        }
     }
 }
